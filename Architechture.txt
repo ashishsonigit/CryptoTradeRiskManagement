@@ -1,0 +1,72 @@
+TradePlanner Architechture Overview
+
+
+app.py
+│
+├── ui_trade.py
+│     ├── logic.get_price()
+│     ├── logic.plan_trade()
+│     └── risk_engine.{compute_basic_perf, compute_adjustments}
+│
+├── ui_perf.py
+│     ├── risk_engine.compute_drawdown (via app.py perf dict)
+│     └── logic.market_intel_fetchers
+│          ├── fetch_fear_greed
+│          ├── fetch_lunarcrush_sentiment
+│          ├── fetch_farside_etf
+│          ├── fetch_tradingview_indicators
+│          ├── fetch_whale_alert_activity
+│          ├── fetch_coinglass_exchange_flows
+│          └── fetch_news_events
+│
+├── ui_regime.py
+│     └── uses st.session_state.regime (RegimeResult-like object)
+│
+├── ui_history.py
+│     └── uses st.session_state.trades (list of trade dicts)
+│
+└── ui_docs.py
+      └── static documentation
+
+risk_engine.py
+│
+├── compute_basic_perf(trades)
+├── compute_drawdown(trades, start_balance)
+└── compute_adjustments(perf, trades, balance, base_risk)
+
+logic.py
+│
+├── get_price(symbol)
+├── plan_trade(...)
+└── all market-intel fetchers
+
+Data flow:
+
+Trades live in st.session_state.trades
+
+Balance lives in st.session_state.balance
+
+Risk engine reads trades + perf + balance → returns recommended risk
+
+UI modules are pure views over session_state + engine outputs
+
+
+TradePlanner-3.0/
+├── app.py
+├── logic.py
+├── risk_engine.py
+├── ui_trade.py
+├── ui_perf.py
+├── ui_regime.py
+├── ui_history.py
+├── ui_docs.py
+├── requirements.txt
+├── README.md
+├── architecture.md
+├── .gitignore
+├── .vscode/
+│   ├── settings.json
+│   └── launch.json
+└── data/
+    ├── __init__.py
+    └── (optional cached data / configs)

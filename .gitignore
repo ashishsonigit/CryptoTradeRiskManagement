@@ -1,0 +1,90 @@
+# ============================
+# Python
+# ============================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pkl
+*.pickle
+
+# Virtual environments
+venv/
+.venv/
+env/
+ENV/
+
+# Byte-compiled / optimized / DLL files
+*.so
+*.dll
+*.dylib
+
+# ============================
+# Streamlit
+# ============================
+.streamlit/
+**/.streamlit/
+
+# Streamlit cache
+**/.cache/
+**/.streamlit/cache/
+
+# ============================
+# Logs
+# ============================
+*.log
+logs/
+*.out
+*.err
+
+# ============================
+# Jupyter / Notebooks
+# ============================
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# ============================
+# VS Code
+# ============================
+.vscode/
+*.code-workspace
+
+# ============================
+# OS-specific
+# ============================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux
+*~
+
+# ============================
+# Environment / Secrets
+# ============================
+.env
+.env.*
+*.env
+secrets.json
+
+# ============================
+# Build / Distribution
+# ============================
+build/
+dist/
+*.egg-info/
+*.egg
+
+# ============================
+# Project-specific
+# ============================
+data/
+data/*.csv
+data/*.json
+assets/
