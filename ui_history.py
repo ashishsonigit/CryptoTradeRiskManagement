@@ -18,12 +18,16 @@ def render_history_ui(state):
 
     df = pd.DataFrame(trades)
 
+    # Ensure exchange column exists even if older trades didn't have it
+    if "exchange" not in df.columns:
+        df["exchange"] = ""
+
     st.subheader("Summary Metrics")
 
     total_trades = len(df)
-    wins = (df["result"] == "Win").sum()
+    wins = (df["pnl"] > 0).sum()
     winrate = wins / total_trades * 100
-    avg_rr = df["actual_rr"].mean()
+    avg_rr = df["actual_rr"].mean() if "actual_rr" in df.columns else 0.0
     avg_pnl = df["pnl"].mean()
     total_pnl = df["pnl"].sum()
 
